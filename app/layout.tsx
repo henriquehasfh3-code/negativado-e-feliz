@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -111,6 +112,24 @@ export default function RootLayout({
           <Footer />
           <ScrollToTop />
           <CookieBanner />
+
+          {/* OneSignal Push Notifications */}
+          <Script
+            src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+            strategy="lazyOnload"
+          />
+          <Script id="onesignal-init" strategy="lazyOnload">
+            {`
+              window.OneSignalDeferred = window.OneSignalDeferred || [];
+              OneSignalDeferred.push(async function(OneSignal) {
+                await OneSignal.init({
+                  appId: "SEU_APP_ID_AQUI",
+                  notifyButton: { enable: false },
+                  allowLocalhostAsSecureOrigin: true,
+                });
+              });
+            `}
+          </Script>
         </ThemeProvider>
       </body>
     </html>

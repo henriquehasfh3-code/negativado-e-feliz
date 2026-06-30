@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Sun, Moon } from "lucide-react"; // ✅ Trocado Skull por TrendingUp
+import { TrendingUp, Sun, Moon, Bell } from "lucide-react";
+import NotificationBell from "@/components/NotificationBell"; // ✅ Trocado Skull por TrendingUp
 
 const navLinks = [
   { name: "Blog", href: "/blog" },
@@ -13,6 +14,40 @@ const navLinks = [
   { name: "Sobre", href: "/sobre" },
   { name: "Contato", href: "/contato" },
 ];
+
+function NotificationBellMobile() {
+  const [subscribed, setSubscribed] = useState(false);
+  const [supported, setSupported] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && "Notification" in window && "serviceWorker" in navigator) {
+      setSupported(true);
+      if (Notification.permission === "granted") setSubscribed(true);
+    }
+  }, []);
+
+  const handleClick = () => {
+    if (!supported || subscribed) return;
+    (window.OneSignalDeferred = window.OneSignalDeferred || []).push(async (OneSignal: any) => {
+      try {
+        await OneSignal.Slidedown.promptPush();
+        if (OneSignal.User.PushSubscription.optedIn) setSubscribed(true);
+      } catch {}
+    });
+  };
+
+  if (!supported) return null;
+
+  return (
+    <button
+      onClick={handleClick}
+      className="w-full flex items-center justify-center gap-3 font-sans text-[15px] font-bold uppercase tracking-wider border border-[#CC0000]/30 hover:border-[#CC0000] text-[#A0A0A0] hover:text-[#F5F5F5] py-4 rounded-[4px] transition-colors"
+    >
+      <Bell className="w-5 h-5" fill={subscribed ? "#CC0000" : "none"} />
+      {subscribed ? "Notificações ativas" : "Ativar notificações"}
+    </button>
+  );
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -143,6 +178,10 @@ export default function Header() {
                 )}
               </button>
             )}
+            
+            {/* NOVO: sino de notificações */}
+            <NotificationBell />
+
             {/* ✅ Botão Assinar com link para newsletter */}
             <Link
               href="#newsletter"
@@ -223,6 +262,9 @@ export default function Header() {
             </nav>
 
             <motion.div variants={drawerLinkVariants} className="flex flex-col gap-4">
+              {/* NOVO: botão de notificações no mobile */}
+              <NotificationBellMobile />
+
               {/* ✅ Botão Assinar no mobile com link */}
               <Link
                 href="#newsletter"
