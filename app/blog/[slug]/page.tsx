@@ -213,11 +213,6 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* CABEÇALHO DO ARTIGO */}
           <header className="mb-10">
-            {/* Tag Categoria */}
-            <span className="inline-block bg-[#CC0000] text-white font-sans text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1.5 rounded-sm mb-4">
-              {post.category}
-            </span>
-
             {/* Título H1 */}
             <h1 className="font-heading text-[48px] md:text-[72px] text-[#F5F5F5] leading-[0.95] tracking-wide mb-6">
               {post.title}
@@ -231,6 +226,10 @@ export default async function ArticlePage({ params }: Props) {
             {/* Linha de metadata */}
             <div className="flex flex-wrap items-center justify-between border-y border-[#CC0000]/10 py-3.5 my-6">
               <div className="flex flex-wrap items-center gap-2 font-sans text-[13px] text-[#606060] uppercase tracking-widest">
+                <span className="inline-block bg-[#CC0000] text-white font-sans text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1.5 rounded-sm">
+                  {post.category}
+                </span>
+                <span>|</span>
                 <span>{formatDate(post.date)}</span>
                 <span>|</span>
                 <span>{post.readingTime}</span>
