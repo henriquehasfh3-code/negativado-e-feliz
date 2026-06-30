@@ -14,10 +14,10 @@ export default function GiscusComments() {
     script.crossOrigin = "anonymous";
     
     // Configurações do Giscus
-    script.setAttribute("data-repo", "seu-usuario/seu-repo");
-    script.setAttribute("data-repo-id", "R_kgDOXXXXXX");
-    script.setAttribute("data-category", "Comments");
-    script.setAttribute("data-category-id", "DIC_kwDOXXXXXX");
+    script.setAttribute("data-repo", "henriquehasfh3-code/negativado-e-feliz");
+    script.setAttribute("data-repo-id", "R_kgDOTJH7KQ");
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", "DIC_kwDOTJH7Kc4DAL7Y");
     script.setAttribute("data-mapping", "pathname");
     script.setAttribute("data-strict", "0");
     script.setAttribute("data-reactions-enabled", "1");
