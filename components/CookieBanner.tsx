@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Cookie, X } from "lucide-react";
+import { Cookie } from "lucide-react";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -35,7 +35,7 @@ export default function CookieBanner() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 260, damping: 25 }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          className="fixed bottom-0 left-0 right-0 z-[9995] p-4 md:p-6"
           role="dialog"
           aria-label="Consentimento de cookies"
         >
