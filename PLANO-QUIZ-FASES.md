@@ -1,3 +1,31 @@
+# Plano — Quiz em 2 Fases com Captura de E-mail
+Gerado em: 2026-06-30
+
+## Fluxo completo
+
+```
+[Tela de Nome]
+      ↓
+[Fase 1 — 6 perguntas → Perfil financeiro]
+      ↓
+[Tela de transição — mostra o perfil, botão "Continuar"]
+      ↓
+[Fase 2 — 4 perguntas → Diagnóstico da situação]
+      ↓
+[Resultado Final — Plano de 3 Passos personalizado]
+      ↓
+[Captura de e-mail — "Receba seu plano completo"]
+```
+
+---
+
+## Arquivo único alterado: `app/quiz/page.tsx`
+
+Substituir o conteúdo **inteiro** do arquivo pelo código abaixo.
+
+---
+
+```tsx
 "use client";
 
 import { useState } from "react";
@@ -617,3 +645,4 @@ export default function QuizPage() {
     </div>
   );
 }
+```
