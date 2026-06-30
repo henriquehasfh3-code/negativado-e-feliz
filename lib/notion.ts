@@ -1,6 +1,7 @@
 import { Client, isFullPage } from "@notionhq/client";
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { NotionPost } from "./notion-types";
+import { NotionToMarkdown } from "notion-to-md";
 
 const notionToken = process.env.NOTION_TOKEN;
 const databaseId = process.env.NOTION_DATABASE_ID;
@@ -8,6 +9,8 @@ const databaseId = process.env.NOTION_DATABASE_ID;
 const notion = new Client({
   auth: notionToken || "fake-token-for-build",
 });
+
+const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export interface NotionPostWithContent extends NotionPost {
   content: string;
@@ -135,8 +138,9 @@ export async function getPostContent(pageId: string): Promise<string> {
   if (!isNotionConfigured()) return "";
 
   try {
-    const response = await notion.pages.retrieveMarkdown({ page_id: pageId });
-    return response.markdown || "";
+    const mdblocks = await n2m.pageToMarkdown(pageId);
+    const mdString = n2m.toMarkdownString(mdblocks);
+    return mdString.parent || "";
   } catch (error) {
     console.error(`[Notion API ERROR] Falha ao buscar markdown da página "${pageId}":`, error);
     throw new Error("Erro de renderização do conteúdo do Notion.");
