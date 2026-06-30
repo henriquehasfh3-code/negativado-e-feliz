@@ -219,11 +219,6 @@ export async function getAllNotionSlugs(): Promise<string[]> {
   return posts.map((p) => p.slug).filter(Boolean);
 }
 
-export {
-  getAllPosts as getAllNotionPosts,
-  getPostBySlug as getNotionPostBySlug,
-  getPostContent as getNotionPostContent,
-  getFeaturedPosts as getFeaturedNotionPosts,
-};
+export { getAllPosts as getAllNotionPosts };
 
 export { type NotionPost } from "./notion-types";
