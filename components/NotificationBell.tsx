@@ -32,9 +32,10 @@ export default function NotificationBell() {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async (OneSignal: any) => {
       try {
-        await OneSignal.Slidedown.promptPush();
-        const optedIn = OneSignal.User.PushSubscription.optedIn;
-        if (optedIn) setSubscribed(true);
+        await OneSignal.User.PushSubscription.optIn();
+        setTimeout(() => {
+          if (OneSignal.User.PushSubscription.optedIn) setSubscribed(true);
+        }, 500);
       } catch (e) {
         console.error("[OneSignal]", e);
       }

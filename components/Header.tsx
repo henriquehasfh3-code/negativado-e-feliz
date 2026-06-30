@@ -30,8 +30,10 @@ function NotificationBellMobile() {
     if (!supported || subscribed) return;
     (window.OneSignalDeferred = window.OneSignalDeferred || []).push(async (OneSignal: any) => {
       try {
-        await OneSignal.Slidedown.promptPush();
-        if (OneSignal.User.PushSubscription.optedIn) setSubscribed(true);
+        await OneSignal.User.PushSubscription.optIn();
+        setTimeout(() => {
+          if (OneSignal.User.PushSubscription.optedIn) setSubscribed(true);
+        }, 500);
       } catch {}
     });
   };
