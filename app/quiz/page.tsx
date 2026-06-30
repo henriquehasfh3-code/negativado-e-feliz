@@ -89,6 +89,13 @@ export default function QuizPage() {
     Esperançoso: 0,
   });
   const [showResult, setShowResult] = useState(false);
+  const [nome, setNome] = useState("");
+  const [quizStarted, setQuizStarted] = useState(false);
+
+  const handleStart = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (nome.trim()) setQuizStarted(true);
+  };
 
   const handleAnswer = (perfil: Perfil) => {
     const newScores = { ...scores, [perfil]: scores[perfil] + 1 };
@@ -109,7 +116,7 @@ export default function QuizPage() {
 
   const handleShare = () => {
     const winner = getWinner();
-    const shareText = `Fiz o Quiz do Negativado e Feliz e descobri que sou o ${results[winner].title}! Descubra o seu: https://negativadoefeliz.com.br/quiz`;
+    const shareText = `Fiz o Quiz do Negativado e Feliz e descobri que sou o ${results[winner].title}! Descubra qual negativado você é: https://negativadoefeliz.com.br/quiz`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
       shareText
     )}`;
@@ -132,7 +139,51 @@ export default function QuizPage() {
 
         <div className="bg-[#111111] border border-[#CC0000]/20 rounded-xl p-8 shadow-[0_16px_64px_rgba(204,0,0,0.1)]">
           <AnimatePresence mode="wait">
-            {!showResult ? (
+            {!quizStarted ? (
+              <motion.div
+                key="name"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-10">
+                  <div className="inline-block bg-[#CC0000] text-white font-sans text-[10px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-sm mb-6">
+                    Quiz Financeiro
+                  </div>
+                  <h2 className="font-heading text-4xl md:text-5xl text-[#F5F5F5] tracking-wide mb-3">
+                    Qual Negativado Você É?
+                  </h2>
+                  <p className="font-sans text-sm text-[#A0A0A0]">
+                    6 perguntas para descobrir seu perfil financeiro
+                  </p>
+                </div>
+
+                <form onSubmit={handleStart} className="space-y-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#606060]">
+                      Primeiro, como você se chama?
+                    </label>
+                    <input
+                      type="text"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
+                      placeholder="Seu nome ou apelido"
+                      required
+                      autoFocus
+                      className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-[#F5F5F5] text-base px-4 py-4 rounded-lg focus:outline-none transition-colors placeholder:text-[#606060]"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-[#CC0000] hover:bg-[#8B0000] text-white font-sans text-sm font-bold uppercase tracking-wider py-4 rounded-lg transition-colors mt-2"
+                  >
+                    Começar o Quiz
+                  </button>
+                </form>
+              </motion.div>
+            ) : !showResult ? (
               <motion.div
                 key={currentQuestion}
                 initial={{ opacity: 0, x: 20 }}
@@ -193,6 +244,9 @@ export default function QuizPage() {
                   Seu Perfil Financeiro
                 </div>
                 
+                <p className="font-sans text-sm text-[#A0A0A0] uppercase tracking-widest mb-2">
+                  {nome}, você é um...
+                </p>
                 <h1 className="font-heading text-4xl md:text-6xl text-[#F5F5F5] mb-6">
                   {results[getWinner()].title}
                 </h1>
@@ -214,6 +268,8 @@ export default function QuizPage() {
                       setCurrentQuestion(0);
                       setScores({ Calmo: 0, Catastrófico: 0, Esperançoso: 0 });
                       setShowResult(false);
+                      setNome("");
+                      setQuizStarted(false);
                     }}
                     className="bg-[#1A1A1A] hover:bg-[#333333] border border-[#333333] text-[#F5F5F5] font-sans text-sm font-bold uppercase tracking-wider px-8 py-4 rounded-lg transition-colors"
                   >
