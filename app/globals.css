@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "../tailwind.config.ts";
+
+:root {
+  --background: #080808;
+  --surface: #111111;
+  --surface-2: #1A1A1A;
+  --border: rgba(204, 0, 0, 0.2); /* #CC000033 */
+  --border-active: #CC0000;
+  --primary: #CC0000;
+  --primary-dark: #8B0000;
+  --accent: #FFD600;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --text-muted: #606060;
+  
+  /* Radianos para shadcn compat */
+  --radius: 4px;
+}
+
+.light {
+  --background: #F5F5F5;
+  --surface: #EAEAEA;
+  --surface-2: #DDDDDD;
+  --border: rgba(204, 0, 0, 0.15);
+  --border-active: #CC0000;
+  --primary: #CC0000;
+  --primary-dark: #8B0000;
+  --accent: #D4AF37; /* Amarelo escuro para melhor contraste */
+  --text-primary: #080808;
+  --text-secondary: #4A4A4A;
+  --text-muted: #777777;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-color: var(--border);
+  }
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia global conforme especificação */
+h1 {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 96px;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 128px;
+  }
+}
+
+h2 {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 48px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 64px;
+  }
+}
+
+h3 {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 40px;
+  }
+}
+
+p {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.label-meta {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Prevenir vazamento de texto geral */
+.text-truncate-safe {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border: 2px solid var(--background);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+
+
+/* Markdown styling específicos para a página do artigo */
+.prose {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.prose h2 {
+  font-family: var(--font-bebas), sans-serif;
+  font-size: 40px;
+  color: var(--text-primary);
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.prose h3 {
+  font-family: var(--font-bebas), sans-serif;
+  font-size: 28px;
+  color: var(--text-primary);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.prose p {
+  color: #D0D0D0;
+  margin-bottom: 24px;
+}
+
+.prose a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 24px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 32px 0;
+}
+
+.prose code {
+  background-color: var(--surface-2);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.9em;
+}
+
+.prose pre {
+  background-color: #050505;
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+.prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Ad Banner tracejado */
+.ad-dashed-container {
+  border: 1px dashed var(--primary);
+  background-color: var(--surface-2);
+}
