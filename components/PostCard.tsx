@@ -50,7 +50,7 @@ export default function PostCard({
       : "text-[28px]";
 
   // Extrai a imagem de capa suportando tanto a estrutura local (image) quanto a do Notion (coverUrl)
-  const imageUrl = (post as any).image || (post as any).coverUrl;
+  const imageUrl = (post as any).image || (post as any).coverUrl || (post as any).cover;
 
   return (
     <motion.div

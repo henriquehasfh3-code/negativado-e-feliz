@@ -124,7 +124,7 @@ export default async function ArticlePage({ params }: Props) {
   const relatedPosts = await getRelatedPosts(slug, post.category, 3);
 
   // Tratamento de Imagem de Capa ausente (se for string vazia, usa default)
-  const coverUrl = post.coverUrl || "/hero-bg.png";
+  const coverUrl = (post as any).coverUrl || (post as any).cover || (post as any).image || "/hero-bg.png";
 
   // Inserindo o banner de publicidade programaticamente após o 3º parágrafo
   const paragraphs = markdownContent.split(/\n\s*\n/);
