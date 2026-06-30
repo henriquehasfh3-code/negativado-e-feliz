@@ -94,8 +94,8 @@ export async function getAllPosts(): Promise<NotionPost[]> {
   if (!isNotionConfigured()) return [];
 
   try {
-    const response = await notion.dataSources.query({
-      data_source_id: databaseId!,
+    const response = await notion.databases.query({
+      database_id: databaseId!,
       filter: {
         property: "Published",
         checkbox: { equals: true },
@@ -114,8 +114,8 @@ export async function getPostBySlug(slug: string): Promise<NotionPost | null> {
   if (!isNotionConfigured()) return null;
 
   try {
-    const response = await notion.dataSources.query({
-      data_source_id: databaseId!,
+    const response = await notion.databases.query({
+      database_id: databaseId!,
       filter: {
         and: [
           { property: "Published", checkbox: { equals: true } },
@@ -162,8 +162,8 @@ export async function getPostsByCategory(category: string): Promise<NotionPost[]
   if (!isNotionConfigured()) return [];
 
   try {
-    const response = await notion.dataSources.query({
-      data_source_id: databaseId!,
+    const response = await notion.databases.query({
+      database_id: databaseId!,
       filter: {
         and: [
           { property: "Published", checkbox: { equals: true } },
@@ -184,8 +184,8 @@ export async function getFeaturedPosts(): Promise<NotionPost[]> {
   if (!isNotionConfigured()) return [];
 
   try {
-    const response = await notion.dataSources.query({
-      data_source_id: databaseId!,
+    const response = await notion.databases.query({
+      database_id: databaseId!,
       filter: {
         property: "Published",
         checkbox: { equals: true },
