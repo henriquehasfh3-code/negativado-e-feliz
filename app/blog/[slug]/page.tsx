@@ -11,7 +11,7 @@ import { TrendingUp, ArrowLeft, User } from "lucide-react";
 import PostCard from "@/components/PostCard";
 import TableOfContents from "@/components/TableOfContents";
 import BookmarkButton from "@/components/BookmarkButton";
-import GiscusComments from "@/components/GiscusComments";
+import CommentForm from "@/components/CommentForm";
 
 // ISR: revalida a cada 60 segundos
 export const revalidate = 60;
@@ -265,7 +265,7 @@ export default async function ArticlePage({ params }: Props) {
             <MDXRemote source={processedContent} components={mdxComponents} />
           </div>
 
-          <GiscusComments />
+          <CommentForm postTitle={post.title} postSlug={slug} />
 
           {relatedPosts.length > 0 && (
             <section className="mt-20 pt-12 border-t border-[#CC0000]/10">

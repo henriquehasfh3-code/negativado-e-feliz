@@ -68,15 +68,15 @@ const questions: Question[] = [
 
 const results: Record<Perfil, { title: string; text: string }> = {
   Calmo: {
-    title: "Negativado Calmo 🧘‍♂️",
+    title: "Negativado Calmo",
     text: "Você tá bem, mas podia estar melhor. Pelo menos não surta.",
   },
   Catastrófico: {
-    title: "Negativado Catastrófico 💣",
+    title: "Negativado Catastrófico",
     text: "Houston, temos um problema. Mas ei — pelo menos você é divertido nas histórias de perrengue.",
   },
   Esperançoso: {
-    title: "Negativado Esperançoso ✨",
+    title: "Negativado Esperançoso",
     text: "Você é o tipo que vai dar a volta por cima. Só precisa parar de usar o cartão como reserva de emergência.",
   },
 };

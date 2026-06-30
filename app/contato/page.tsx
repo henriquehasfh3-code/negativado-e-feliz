@@ -5,10 +5,24 @@ import { useState } from "react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [divida, setDivida] = useState("none");
+  const [mensagem, setMensagem] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, divida, mensagem }),
+      });
+      if (!res.ok) throw new Error("Falha");
+      setSubmitted(true);
+    } catch {
+      alert("Erro ao enviar. Tenta de novo!");
+    }
   };
   return (
     <div className="min-h-screen bg-[#080808] pt-12 md:pt-16 pb-16 px-6">
@@ -54,6 +68,8 @@ export default function ContactPage() {
                   placeholder="Ex: Pobre Lindo"
                   className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-sm text-[#F5F5F5] px-4 py-3.5 rounded-[4px] focus:outline-none transition-colors"
                   required
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -65,6 +81,8 @@ export default function ContactPage() {
                   placeholder="Ex: devedor@boletos.com"
                   className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-sm text-[#F5F5F5] px-4 py-3.5 rounded-[4px] focus:outline-none transition-colors"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -73,7 +91,11 @@ export default function ContactPage() {
               <label className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#606060]">
                 Qual o valor da sua maior dívida? (Opcional)
               </label>
-              <select className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-sm text-[#F5F5F5] px-4 py-3.5 rounded-[4px] focus:outline-none transition-colors">
+              <select 
+                className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-sm text-[#F5F5F5] px-4 py-3.5 rounded-[4px] focus:outline-none transition-colors"
+                value={divida}
+                onChange={(e) => setDivida(e.target.value)}
+              >
                 <option value="none">Ainda estou no azul (sortudo)</option>
                 <option value="under-5k">Até R$ 5.000 (iniciante)</option>
                 <option value="5k-20k">De R$ 5.000 a R$ 20.000 (intermediário)</option>
@@ -90,6 +112,8 @@ export default function ContactPage() {
                 placeholder="Conte para nós como você foi parar no vermelho..."
                 className="bg-[#1A1A1A] border border-[#333333] focus:border-[#CC0000] text-sm text-[#F5F5F5] px-4 py-3.5 rounded-[4px] focus:outline-none transition-colors resize-none"
                 required
+                value={mensagem}
+                onChange={(e) => setMensagem(e.target.value)}
               />
             </div>
 
