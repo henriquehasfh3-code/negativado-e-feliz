@@ -144,6 +144,23 @@ p {
   font-size: 18px;
   line-height: 1.8;
   color: var(--text-primary);
+
+  /* Sobrescreve as variáveis padrão do @tailwindcss/typography */
+  --tw-prose-body: #D0D0D0;
+  --tw-prose-headings: #F5F5F5;
+  --tw-prose-links: #CC0000;
+  --tw-prose-bold: #F5F5F5;
+  --tw-prose-counters: #A0A0A0;
+  --tw-prose-bullets: #CC0000;
+  --tw-prose-hr: rgba(204, 0, 0, 0.2);
+  --tw-prose-quotes: #A0A0A0;
+  --tw-prose-quote-borders: #CC0000;
+  --tw-prose-captions: #606060;
+  --tw-prose-code: #F5F5F5;
+  --tw-prose-pre-code: #F5F5F5;
+  --tw-prose-pre-bg: #050505;
+  --tw-prose-th-borders: rgba(204, 0, 0, 0.2);
+  --tw-prose-td-borders: rgba(204, 0, 0, 0.1);
 }
 
 .prose h2 {
