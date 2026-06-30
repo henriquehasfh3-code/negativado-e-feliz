@@ -94,7 +94,6 @@ export async function getAllPosts(): Promise<NotionPost[]> {
   if (!isNotionConfigured()) return [];
 
   try {
-    // @ts-ignore - The official SDK has this method but local types might be misaligned
     const response = await notion.databases.query({
       database_id: databaseId!,
       filter: {
@@ -115,7 +114,6 @@ export async function getPostBySlug(slug: string): Promise<NotionPost | null> {
   if (!isNotionConfigured()) return null;
 
   try {
-    // @ts-ignore
     const response = await notion.databases.query({
       database_id: databaseId!,
       filter: {
@@ -164,7 +162,6 @@ export async function getPostsByCategory(category: string): Promise<NotionPost[]
   if (!isNotionConfigured()) return [];
 
   try {
-    // @ts-ignore
     const response = await notion.databases.query({
       database_id: databaseId!,
       filter: {
@@ -187,7 +184,6 @@ export async function getFeaturedPosts(): Promise<NotionPost[]> {
   if (!isNotionConfigured()) return [];
 
   try {
-    // @ts-ignore
     const response = await notion.databases.query({
       database_id: databaseId!,
       filter: {
