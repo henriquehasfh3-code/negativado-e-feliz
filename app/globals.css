@@ -180,18 +180,19 @@ p {
 }
 
 .prose p {
-  color: #D0D0D0;
+  color: #D0D0D0 !important;
   margin-bottom: 24px;
 }
 
 .prose a {
-  color: var(--primary);
-  text-decoration: none;
+  color: var(--primary) !important;
+  text-decoration: none !important;
   font-weight: 600;
 }
 
 .prose a:hover {
-  text-decoration: underline;
+  text-decoration: underline !important;
+  color: var(--primary-dark) !important;
 }
 
 .prose blockquote {
