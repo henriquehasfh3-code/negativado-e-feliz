@@ -40,7 +40,7 @@ export default function ShareButtons({ url, title, coverUrl }: ShareButtonsProps
   return (
     <>
       {/* ─── DESKTOP SIDEBAR STICKY (> 1200px) ─────────────────────────────────── */}
-      <aside className="hidden xl:flex fixed left-[calc(50%-480px)] top-[240px] flex-col gap-4 z-40 items-center justify-center p-2 bg-[#111111]/80 backdrop-blur-xl border border-[#CC0000]/20 rounded-full shadow-lg shadow-[#CC0000]/20">
+      <aside className="hidden xl:flex fixed left-4 top-[240px] flex-col gap-4 z-40 items-center justify-center p-2 bg-[#111111]/80 backdrop-blur-xl border border-[#CC0000]/20 rounded-full shadow-lg shadow-[#CC0000]/20">
         <span className="font-sans text-[9px] font-bold text-[#606060] uppercase tracking-widest rotate-[-90deg] my-4 select-none">
           Compartilhar
         </span>

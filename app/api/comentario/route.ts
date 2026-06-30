@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         sender: {
           name: "Negativado e Feliz — Comentários",
-          email: "noreply@negativadoefeliz.com.br",
+          email: "henriquehasfh3@gmail.com",
         },
         to: [{ email: "henriquehasfh3@gmail.com", name: "Henrique" }],
         subject: `Novo comentário em "${postTitle}"`,
