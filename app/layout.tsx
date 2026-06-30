@@ -123,7 +123,7 @@ export default function RootLayout({
               window.OneSignalDeferred = window.OneSignalDeferred || [];
               OneSignalDeferred.push(async function(OneSignal) {
                 await OneSignal.init({
-                  appId: "SEU_APP_ID_AQUI",
+                  appId: "92d9816e-dd0c-45e7-834b-11942ec08e03",
                   notifyButton: { enable: false },
                   allowLocalhostAsSecureOrigin: true,
                 });
