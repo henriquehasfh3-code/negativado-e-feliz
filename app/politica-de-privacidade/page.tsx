@@ -67,6 +67,8 @@ export default function PrivacyPolicyPage() {
                 { dado: "Conteúdo de mensagens", motivo: "Mensagens enviadas pelo formulário de contato ou comentários nos artigos." },
                 { dado: "Dados de navegação (cookies)", motivo: "Preferência de tema (escuro/claro), artigos salvos — armazenados localmente no seu dispositivo." },
                 { dado: "Dados de push notification", motivo: "Identificador anônimo do dispositivo, se você optar por receber notificações via OneSignal." },
+                { dado: "Dados de navegação analytics", motivo: "Coletados anonimamente pelo Google Analytics 4 (GA4) para entender como os leitores utilizam o site (páginas visitadas, tempo de leitura, origem do tráfego). Não inclui dados pessoais identificáveis." },
+                { dado: "Preferências de acessibilidade", motivo: "Configurações do widget de acessibilidade (tamanho de fonte, contraste etc.) armazenadas localmente no seu dispositivo via localStorage. Não são enviadas a nenhum servidor." },
               ].map((item) => (
                 <li key={item.dado} className="flex gap-3">
                   <span className="text-[#CC0000] mt-1 flex-shrink-0">—</span>
@@ -112,6 +114,7 @@ export default function PrivacyPolicyPage() {
                 { empresa: "OneSignal", uso: "Gerencia as assinaturas de notificações push. Armazena identificadores anônimos de dispositivo. Política: onesignal.com/privacy_policy" },
                 { empresa: "Google AdSense", uso: "Exibe anúncios personalizados com base no perfil de navegação (quando ativo). Política: policies.google.com/privacy" },
                 { empresa: "Vercel", uso: "Hospedagem do site. Pode registrar logs de acesso (IP, data/hora) por razões de segurança." },
+                { empresa: "Google Analytics 4 (GA4)", uso: "Coleta dados de navegação anônimos para análise de tráfego e comportamento dos leitores. Nenhum dado pessoal identificável é compartilhado. Política: policies.google.com/privacy" },
               ].map((item) => (
                 <li key={item.empresa} className="flex gap-3">
                   <span className="text-[#CC0000] mt-1 flex-shrink-0">—</span>
@@ -224,7 +227,7 @@ export default function PrivacyPolicyPage() {
           {/* Rodapé */}
           <div className="border-t border-[#CC0000]/20 pt-6 mt-2">
             <p className="text-center text-[#606060] font-sans text-xs uppercase tracking-widest">
-              Última atualização: 30 de junho de 2026.
+              Última atualização: 02 de julho de 2026.
             </p>
           </div>
 

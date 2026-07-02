@@ -113,6 +113,14 @@ export default function Footer() {
                   Política de Privacidade
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/declaracao-de-acessibilidade"
+                  className="text-[#A0A0A0] hover:text-[#F5F5F5] transition-colors duration-200"
+                >
+                  Acessibilidade
+                </Link>
+              </li>
             </ul>
           </div>
 
