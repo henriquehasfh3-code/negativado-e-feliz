@@ -231,3 +231,36 @@ p {
   border: 1px dashed var(--primary);
   background-color: var(--surface-2);
 }
+
+/* ── Acessibilidade ──────────────────────────────────────────── */
+html.a11y-font-lg  { font-size: 112.5%; }
+html.a11y-font-xl  { font-size: 125%; }
+
+html.a11y-high-contrast { filter: contrast(160%); }
+
+html.a11y-grayscale body { filter: grayscale(100%); }
+
+html.a11y-no-motion *,
+html.a11y-no-motion *::before,
+html.a11y-no-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-text-spacing p,
+html.a11y-text-spacing li,
+html.a11y-text-spacing span {
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+  line-height: 1.9 !important;
+}
+
+html.a11y-links a {
+  outline: 2px solid #CC0000 !important;
+  outline-offset: 2px;
+  background: rgba(204, 0, 0, 0.12);
+  border-radius: 2px;
+  padding: 0 2px;
+}
