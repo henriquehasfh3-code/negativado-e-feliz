@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Accessibility, X, ZoomIn, ZoomOut, Sun, Film, Type, Link2 } from "lucide-react";
+import { Accessibility, X, ZoomOut, Sun, Film, Type, Link2 } from "lucide-react";
 
 type FontLevel = "normal" | "lg" | "xl";
 
