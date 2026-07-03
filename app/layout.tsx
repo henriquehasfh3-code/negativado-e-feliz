@@ -44,6 +44,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Negativado e Feliz" }],
   creator: "Negativado e Feliz",
   publisher: "Negativado e Feliz",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
