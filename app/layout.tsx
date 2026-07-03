@@ -101,18 +101,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         /> */}
         
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF5TR6NYGW"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-BF5TR6NYGW');
-            `,
-          }}
-        />
+
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <ThemeProvider
@@ -146,6 +135,20 @@ export default function RootLayout({
                   allowLocalhostAsSecureOrigin: true,
                 });
               });
+            `}
+          </Script>
+
+          {/* Google Analytics 4 (GA4) */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-BF5TR6NYGW"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BF5TR6NYGW');
             `}
           </Script>
 
