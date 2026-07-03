@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+  const escape = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
   try {
     const { nome, email, comentario, postTitle, postSlug } = await request.json();
 
@@ -27,11 +30,11 @@ export async function POST(request: NextRequest) {
           <p><strong>Artigo:</strong> ${postTitle}</p>
           <p><strong>Link:</strong> https://negativadoefeliz.com.br/blog/${postSlug}</p>
           <hr/>
-          <p><strong>Nome:</strong> ${nome}</p>
-          <p><strong>E-mail:</strong> ${email || "não informado"}</p>
+          <p><strong>Nome:</strong> ${escape(nome)}</p>
+          <p><strong>E-mail:</strong> ${email ? escape(email) : "não informado"}</p>
           <hr/>
           <blockquote style="border-left: 4px solid #CC0000; padding-left: 16px; color: #333;">
-            ${comentario}
+            ${escape(comentario)}
           </blockquote>
         `,
       }),
