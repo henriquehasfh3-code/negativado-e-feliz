@@ -59,16 +59,27 @@ function getDate(page: PageObjectResponse, key: string): string {
 }
 
 function getCoverUrl(page: PageObjectResponse): string {
+  let url = "/hero-bg.png";
+
   const coverProp = page.properties["Cover"];
   if (coverProp?.type === "files" && coverProp.files.length > 0) {
     const file = coverProp.files[0] as any;
-    return file.file?.url || file.external?.url || "/hero-bg.png";
-  }
-  if (page.cover) {
+    url = file.file?.url || file.external?.url || "/hero-bg.png";
+  } else if (page.cover) {
     const coverObj = page.cover as any;
-    return coverObj.file?.url || coverObj.external?.url || "/hero-bg.png";
+    url = coverObj.file?.url || coverObj.external?.url || "/hero-bg.png";
   }
-  return "/hero-bg.png";
+
+  // Converte URLs do próprio domínio em caminhos relativos
+  // para evitar dependência de DNS durante carregamento das imagens
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname === "negativadoefeliz.com.br") {
+      return parsed.pathname;
+    }
+  } catch {}
+
+  return url;
 }
 
 function mapPageToPost(page: PageObjectResponse): NotionPost {
