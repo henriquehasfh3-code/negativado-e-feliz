@@ -186,17 +186,17 @@ function getActionPlan(perfil: Perfil, answers: Phase2Answers) {
   const artigosPorPerfil: Record<Perfil, { texto: string; slug: string; label: string }> = {
     Catastrófico: {
       texto: "Você precisa de um plano concreto para sair das dívidas. Comece por aqui:",
-      slug: "sair-das-dividas",
-      label: "Como Sair das Dívidas — Guia Prático",
+      slug: "como-sair-das-dividas-surtado",
+      label: "Como Sair das Dívidas Sem Surtar",
     },
     Esperançoso: {
       texto: "Você tem disposição, agora precisa de estratégia. Entenda como o cartão funciona contra você:",
-      slug: "cartao-de-credito",
+      slug: "cartao-de-credito-vilao",
       label: "Cartão de Crédito: Vilão ou Ferramenta?",
     },
     Calmo: {
       texto: "Você tem controle — agora é hora de fazer o dinheiro trabalhar por você:",
-      slug: "tesouro-direto",
+      slug: "tesouro-direto-30-reais",
       label: "Tesouro Direto: Invista R$30 Agora",
     },
   };
