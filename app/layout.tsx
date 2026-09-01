@@ -44,13 +44,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Negativado e Feliz" }],
   creator: "Negativado e Feliz",
   publisher: "Negativado e Feliz",
+  // O ícone principal (favicon.ico e icon.png) usa a convenção de arquivo do
+  // Next.js App Router — os arquivos ficam em app/favicon.ico e app/icon.png,
+  // e o Next gera as tags <link rel="icon"> sozinho. Não declarar `icon` aqui
+  // de novo pra não duplicar/conflitar com essa geração automática.
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    shortcut: "/favicon.ico",
     apple: "/icon-192.png",
   },
   openGraph: {
