@@ -39,11 +39,15 @@ const PROVIDERS: Record<Role, Provider> = {
     apiKeyEnv: "GEMINI_API_KEY",
     model: process.env.FORUM_MODEL_TOPICS || "gemini-3-flash-preview",
   },
+  // Também Qwen, e não Grok: a xAI não tem faixa gratuita, e num teste lado a
+  // lado o qwen3.8 respondeu dentro da voz da marca em ~950ms. O qwen3.6 foi
+  // descartado — vaza o bloco <think> no texto visível e escapa caractere
+  // chinês no meio do português, o que num fórum público é inaceitável.
   replies: {
-    label: "Grok/xAI",
-    baseURL: "https://api.x.ai/v1",
-    apiKeyEnv: "XAI_API_KEY",
-    model: process.env.FORUM_MODEL_REPLIES || "grok-4.6",
+    label: "Qwen/Groq",
+    baseURL: "https://api.groq.com/openai/v1",
+    apiKeyEnv: "GROQ_API_KEY",
+    model: process.env.FORUM_MODEL_REPLIES || "qwen/qwen3.8-27b",
   },
 };
 
@@ -101,7 +105,13 @@ async function complete(
       },
       { timeout: timeoutMs },
     );
-    const text = res.choices[0]?.message?.content ?? "";
+    // Alguns modelos abertos vazam o raciocínio interno como texto visível
+    // (o qwen3.6 faz isso). Nunca deixar isso chegar ao fórum.
+    const raw = res.choices[0]?.message?.content ?? "";
+    const text = raw
+      .replace(/<think>[\s\S]*?<\/think>/gi, "")
+      .replace(/<think>[\s\S]*$/i, "")
+      .trim();
     return {
       text,
       inTok: res.usage?.prompt_tokens ?? 0,
