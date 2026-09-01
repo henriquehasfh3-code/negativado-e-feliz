@@ -45,8 +45,13 @@ export const metadata: Metadata = {
   creator: "Negativado e Feliz",
   publisher: "Negativado e Feliz",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/icon-192.png",
   },
   openGraph: {
     type: "website",

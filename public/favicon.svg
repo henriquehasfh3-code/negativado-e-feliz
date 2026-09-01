@@ -1,25 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <style>
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    .spin {
-      transform-origin: 12px 12px;
-      animation: spin 3s linear infinite;
-    }
-  </style>
-
-  <!-- Fundo escuro com bordas arredondadas -->
   <rect width="24" height="24" rx="4" fill="#080808"/>
-
-  <!-- Ícone TrendingUp girando -->
-  <g class="spin"
-     stroke="#CC0000"
-     stroke-width="1.8"
-     stroke-linecap="round"
-     stroke-linejoin="round"
-     fill="none">
+  <g stroke="#CC0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
     <polyline points="16 7 22 7 22 13"/>
   </g>
