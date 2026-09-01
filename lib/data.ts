@@ -1,3 +1,4 @@
+import { cache } from "react";
 /**
  * lib/data.ts
  *
@@ -91,7 +92,7 @@ function mdxDetailToPostDetail(p: Post): PostDetail {
  * Se o Notion retornar resultados, usa apenas eles.
  * Se retornar vazio (API off/não configurada), usa MDX.
  */
-export async function getAllPosts(): Promise<PostSummary[]> {
+export const getAllPosts = cache(async function getAllPosts(): Promise<PostSummary[]> {
   if (isNotionConfigured()) {
     try {
       const notionPosts = await getAllNotionPosts();
@@ -108,13 +109,17 @@ export async function getAllPosts(): Promise<PostSummary[]> {
   // Fallback MDX
   const mdxPosts = getAllMdxPosts();
   return mdxPosts.map(mdxPostToSummary);
-}
+});
 
 /**
  * Retorna um artigo completo (metadados + conteúdo Markdown) pelo slug.
  * Prioridade: Notion → MDX local.
+ *
+ * Memoizado: generateMetadata e o componente da página pedem o MESMO artigo.
+ * Sem o cache eram duas idas ao Notion por artigo, e com 100 artigos isso
+ * estourava o rate limit.
  */
-export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
+export const getPostBySlug = cache(async function getPostBySlug(slug: string): Promise<PostDetail | null> {
   if (isNotionConfigured()) {
     try {
       const notionPost = await getFullNotionPost(slug);
@@ -134,7 +139,7 @@ export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
   const mdxPost = getMdxPostBySlug(slug);
   if (!mdxPost) return null;
   return mdxDetailToPostDetail(mdxPost);
-}
+});
 
 /**
  * Retorna todas as categorias únicas dos artigos publicados.
@@ -154,7 +159,7 @@ export async function getAllCategories(): Promise<string[]> {
 /**
  * Retorna todos os slugs — usado em generateStaticParams.
  */
-export async function getAllSlugs(): Promise<string[]> {
+export const getAllSlugs = cache(async function getAllSlugs(): Promise<string[]> {
   if (isNotionConfigured()) {
     try {
       const notionSlugs = await getAllNotionSlugs();
@@ -165,7 +170,7 @@ export async function getAllSlugs(): Promise<string[]> {
   }
   const mdxPosts = getAllMdxPosts();
   return mdxPosts.map((p) => p.slug);
-}
+});
 
 /**
  * Retorna artigos relacionados por categoria (excluindo o atual).
