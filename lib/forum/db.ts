@@ -1,7 +1,19 @@
 import { neon } from "@neondatabase/serverless";
 import crypto from "crypto";
 
-const sql = neon(process.env.DATABASE_URL!);
+// Sem DATABASE_URL o fórum fica inerte, mas o resto do site continua buildando
+// e no ar. Uma variável de ambiente faltando não pode derrubar o blog inteiro.
+export const forumConfigured = Boolean(process.env.DATABASE_URL);
+
+// URL de placeholder só pra não estourar no carregamento do módulo; toda função
+// de leitura curto-circuita antes de usar a conexão quando não há configuração.
+const sql = neon(process.env.DATABASE_URL || "postgresql://user:pass@localhost/none");
+
+function requireDb() {
+  if (!forumConfigured) {
+    throw new Error("DATABASE_URL não configurada — fórum indisponível");
+  }
+}
 
 export type AuthorKind = "human" | "ai" | "admin";
 export type PostStatus = "pending" | "published" | "rejected" | "hidden";
@@ -87,6 +99,7 @@ export async function listThreads(opts: {
   limit?: number;
   offset?: number;
 } = {}): Promise<Thread[]> {
+  if (!forumConfigured) return [];
   const { category, limit = 30, offset = 0 } = opts;
   if (category && category !== "Todos") {
     return (await sql`
@@ -105,6 +118,7 @@ export async function listThreads(opts: {
 }
 
 export async function getThreadBySlug(slug: string): Promise<Thread | null> {
+  if (!forumConfigured) return null;
   const rows = (await sql`
     SELECT * FROM forum_threads WHERE slug = ${slug} AND status = 'published' LIMIT 1
   `) as Thread[];
@@ -112,6 +126,7 @@ export async function getThreadBySlug(slug: string): Promise<Thread | null> {
 }
 
 export async function listReplies(threadId: number): Promise<Reply[]> {
+  if (!forumConfigured) return [];
   return (await sql`
     SELECT * FROM forum_replies
     WHERE thread_id = ${threadId} AND status = 'published'
@@ -120,6 +135,7 @@ export async function listReplies(threadId: number): Promise<Reply[]> {
 }
 
 export async function getPoll(threadId: number): Promise<Poll | null> {
+  if (!forumConfigured) return null;
   const polls = (await sql`
     SELECT * FROM forum_polls WHERE thread_id = ${threadId} LIMIT 1
   `) as Poll[];
@@ -131,6 +147,7 @@ export async function getPoll(threadId: number): Promise<Poll | null> {
 }
 
 export async function listCategories(): Promise<string[]> {
+  if (!forumConfigured) return [];
   const rows = (await sql`
     SELECT DISTINCT category FROM forum_threads WHERE status = 'published' ORDER BY category
   `) as { category: string }[];
@@ -139,6 +156,7 @@ export async function listCategories(): Promise<string[]> {
 
 /** Tópicos já abertos pela IA para um artigo — evita duplicar assunto. */
 export async function articleHasThread(articleSlug: string): Promise<boolean> {
+  if (!forumConfigured) return true;
   const rows = (await sql`
     SELECT 1 FROM forum_threads WHERE source_article_slug = ${articleSlug} LIMIT 1
   `) as unknown[];
@@ -158,6 +176,7 @@ export async function createThread(input: {
   status?: PostStatus;
   moderationReason?: string | null;
 }): Promise<Thread> {
+  requireDb();
   const rows = (await sql`
     INSERT INTO forum_threads
       (slug, title, body, category, author_kind, author_name, author_email,
@@ -184,6 +203,7 @@ export async function createReply(input: {
   status?: PostStatus;
   moderationReason?: string | null;
 }): Promise<Reply> {
+  requireDb();
   const rows = (await sql`
     INSERT INTO forum_replies
       (thread_id, parent_id, body, author_kind, author_name, author_email, status, moderation_reason)
@@ -212,6 +232,7 @@ export async function createPoll(input: {
   options: string[];
   closesAt?: Date | null;
 }): Promise<void> {
+  requireDb();
   const polls = (await sql`
     INSERT INTO forum_polls (thread_id, question, closes_at)
     VALUES (${input.threadId}, ${input.question}, ${input.closesAt ?? null})
@@ -233,6 +254,7 @@ export async function castVote(input: {
   voterKey: string;
   value: 1 | -1;
 }): Promise<number> {
+  requireDb();
   const existing = (await sql`
     SELECT value FROM forum_votes
     WHERE target_kind = ${input.targetKind} AND target_id = ${input.targetId}
@@ -275,6 +297,7 @@ export async function castPollVote(input: {
   optionId: number;
   voterKey: string;
 }): Promise<boolean> {
+  requireDb();
   const inserted = (await sql`
     INSERT INTO forum_poll_votes (poll_id, option_id, voter_key)
     VALUES (${input.pollId}, ${input.optionId}, ${input.voterKey})
@@ -297,6 +320,7 @@ export interface AiUsage {
 }
 
 export async function getTodayAiUsage(): Promise<AiUsage> {
+  if (!forumConfigured) return { threads_created: 999, replies_created: 999, moderations_run: 999 };
   const rows = (await sql`
     SELECT threads_created, replies_created, moderations_run
     FROM forum_ai_usage WHERE day = CURRENT_DATE
@@ -311,6 +335,7 @@ export async function recordAiUsage(input: {
   inputTokens?: number;
   outputTokens?: number;
 }): Promise<void> {
+  if (!forumConfigured) return;
   await sql`
     INSERT INTO forum_ai_usage
       (day, threads_created, replies_created, moderations_run, input_tokens, output_tokens)
