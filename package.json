@@ -10,7 +10,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.122.0",
     "@neondatabase/serverless": "^1.1.0",
     "@notionhq/client": "^2.2.3",
     "@tailwindcss/typography": "^0.5.20",
@@ -22,6 +21,7 @@
     "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.6",
     "notion-to-md": "^3.1.9",
+    "openai": "^7.8.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "reading-time": "^1.5.0",
