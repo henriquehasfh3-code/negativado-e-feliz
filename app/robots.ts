@@ -5,6 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // Área de moderação: conteúdo retido, privado, nunca deve ser indexado
+      disallow: ["/admin", "/admin/"],
     },
     sitemap: "https://negativadoefeliz.com.br/sitemap.xml",
   };
