@@ -10,6 +10,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
+    "@neondatabase/serverless": "^1.1.0",
     "@notionhq/client": "^2.2.3",
     "@tailwindcss/typography": "^0.5.20",
     "clsx": "^2.1.1",

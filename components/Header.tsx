@@ -9,6 +9,7 @@ import NotificationBell from "@/components/NotificationBell"; // ✅ Trocado Sku
 
 const navLinks = [
   { name: "Blog", href: "/blog" },
+  { name: "Fórum", href: "/forum" },
   { name: "Quiz", href: "/quiz" },
   { name: "Calculadora", href: "/calculadora" },
   { name: "Sobre", href: "/sobre" },

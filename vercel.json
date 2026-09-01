@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/forum/cron?mode=topic",
+      "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/forum/cron?mode=poll",
+      "schedule": "0 15 * * 1,4"
+    }
+  ]
+}
