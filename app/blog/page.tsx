@@ -8,7 +8,7 @@ import Link from "next/link";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Arquivo de Confissões | Negativado e Feliz",
+  title: "Arquivo de Confissões",
   description:
     "Todos os nossos artigos e confissões financeiras. Leia, ria e aprenda a organizar sua vida financeira antes que o banco leve tudo.",
   openGraph: {

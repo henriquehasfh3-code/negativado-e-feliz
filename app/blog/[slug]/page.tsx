@@ -47,7 +47,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://negativadoefeliz.com.br";
 
     return {
-      title: `${post.title} | Negativado e Feliz`,
+      // O template do layout raiz já anexa " | Negativado e Feliz". Repetir aqui
+      // duplicava a marca no título de todos os artigos e comia o espaço que o
+      // Google mostra no resultado de busca.
+      title: post.title,
       description: post.description,
       openGraph: {
         title: post.title,

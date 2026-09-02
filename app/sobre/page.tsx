@@ -3,7 +3,7 @@ import { AlertCircle } from "lucide-react";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Nossa História (Triste) | Negativado e Feliz",
+  title: "Nossa História (Triste)",
   description: "Descubra como nasceu o Negativado e Feliz, o blog de finanças mais sincero e quebrado do Brasil.",
 };
 
