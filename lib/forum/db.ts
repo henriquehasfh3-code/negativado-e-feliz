@@ -154,6 +154,33 @@ export async function listCategories(): Promise<string[]> {
   return rows.map((r) => r.category);
 }
 
+/**
+ * Acha a melhor discussão para puxar o leitor de um artigo.
+ *
+ * Prioridade: tópico aberto a partir DESTE artigo > tópico da mesma categoria
+ * com mais movimento > nada (aí o convite leva ao fórum geral).
+ */
+export async function threadForArticle(
+  articleSlug: string,
+  category: string,
+): Promise<{ slug: string; title: string; reply_count: number } | null> {
+  if (!forumConfigured) return null;
+
+  const doArtigo = (await sql`
+    SELECT slug, title, reply_count FROM forum_threads
+    WHERE source_article_slug = ${articleSlug} AND status = 'published'
+    ORDER BY last_activity_at DESC LIMIT 1
+  `) as { slug: string; title: string; reply_count: number }[];
+  if (doArtigo[0]) return doArtigo[0];
+
+  const daCategoria = (await sql`
+    SELECT slug, title, reply_count FROM forum_threads
+    WHERE category = ${category} AND status = 'published'
+    ORDER BY reply_count DESC, last_activity_at DESC LIMIT 1
+  `) as { slug: string; title: string; reply_count: number }[];
+  return daCategoria[0] ?? null;
+}
+
 /** Tópicos já abertos pela IA para um artigo — evita duplicar assunto. */
 export async function articleHasThread(articleSlug: string): Promise<boolean> {
   if (!forumConfigured) return true;

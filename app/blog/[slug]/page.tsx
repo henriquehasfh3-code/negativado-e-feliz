@@ -12,6 +12,7 @@ import PostCard from "@/components/PostCard";
 import TableOfContents from "@/components/TableOfContents";
 import BookmarkButton from "@/components/BookmarkButton";
 import CommentForm from "@/components/CommentForm";
+import ForumCta from "@/components/forum/ForumCta";
 
 // ISR: revalida a cada 60 segundos
 export const revalidate = 60;
@@ -266,6 +267,9 @@ export default async function ArticlePage({ params }: Props) {
           <div className="prose max-w-none">
             <MDXRemote source={processedContent} components={mdxComponents} />
           </div>
+
+          {/* Convite ao fórum: liga o artigo à discussão do mesmo assunto */}
+          <ForumCta articleSlug={slug} category={post.category} />
 
           <CommentForm postTitle={post.title} postSlug={slug} />
 
