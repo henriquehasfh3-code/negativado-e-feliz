@@ -60,7 +60,7 @@ export default function DebtCalculatorPage() {
     const formattedDebt = formatter.format(Number(debtAmount));
     const formattedInterest = formatter.format(results.totalInterest);
     
-    const shareText = `Minha dívida de ${formattedDebt} vai me custar ${formattedInterest} SÓ DE JUROS 🤡. Calcule a sua (se tiver coragem) no Negativado e Feliz 👉 https://negativadoefeliz.com.br/calculadora`;
+    const shareText = `Minha dívida de ${formattedDebt} vai me custar ${formattedInterest} SÓ DE JUROS 🤡. Calcule a sua (se tiver coragem) no Negativado e Feliz 👉 https://www.negativadoefeliz.com.br/calculadora`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
     window.open(whatsappUrl, "_blank");
   };

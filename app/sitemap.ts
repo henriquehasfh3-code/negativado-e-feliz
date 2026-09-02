@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/data";
 
-const BASE_URL = "https://negativadoefeliz.com.br";
+const BASE_URL = "https://www.negativadoefeliz.com.br";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Todos os artigos do blog. Finanças com humor, direto ao ponto.",
     images: [
       {
-        url: `https://negativadoefeliz.com.br/og?title=Arquivo+de+Confissões&category=Blog`,
+        url: `https://www.negativadoefeliz.com.br/og?title=Arquivo+de+Confissões&category=Blog`,
         width: 1200,
         height: 630,
         alt: "Arquivo de Confissões — Negativado e Feliz",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: [`https://negativadoefeliz.com.br/og?title=Arquivo+de+Confissões&category=Blog`],
+    images: [`https://www.negativadoefeliz.com.br/og?title=Arquivo+de+Confissões&category=Blog`],
   },
 };
 

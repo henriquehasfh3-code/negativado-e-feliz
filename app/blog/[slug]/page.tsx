@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = await getPostBySlug(slug);
     if (!post) return { title: "Artigo não encontrado" };
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://negativadoefeliz.com.br";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.negativadoefeliz.com.br";
 
     return {
       // O template do layout raiz já anexa " | Negativado e Feliz". Repetir aqui
@@ -139,7 +139,7 @@ export default async function ArticlePage({ params }: Props) {
     processedContent = `${firstPart}\n\n<AdSenseSlot />\n\n${secondPart}`;
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://negativadoefeliz.com.br";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.negativadoefeliz.com.br";
 
   // Schema.org Article JSON-LD
   const jsonLd = {

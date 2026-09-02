@@ -24,7 +24,7 @@ const bebas = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://negativadoefeliz.com.br"),
+  metadataBase: new URL("https://www.negativadoefeliz.com.br"),
   title: {
     default: "Negativado e Feliz | Porque alguém tem que rir das contas",
     template: "%s | Negativado e Feliz",
@@ -54,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://negativadoefeliz.com.br",
+    url: "https://www.negativadoefeliz.com.br",
     siteName: "Negativado e Feliz",
     title: "Negativado e Feliz | Porque alguém tem que rir das contas",
     description:
       "O blog que fala de finanças com humor negro, pra você que tá no vermelho mas não perde a piada.",
     images: [
       {
-        url: "https://negativadoefeliz.com.br/og?title=Porque+alguém+tem+que+rir+das+contas&category=Finanças+com+Humor",
+        url: "https://www.negativadoefeliz.com.br/og?title=Porque+alguém+tem+que+rir+das+contas&category=Finanças+com+Humor",
         width: 1200,
         height: 630,
         alt: "Negativado e Feliz — Porque alguém tem que rir das contas",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: "Negativado e Feliz",
     description:
       "Finanças com humor pesado e direto ao ponto. Pra quem tá no vermelho mas não perde a piada.",
-    images: ["https://negativadoefeliz.com.br/og?title=Porque+alguém+tem+que+rir+das+contas&category=Finanças+com+Humor"],
+    images: ["https://www.negativadoefeliz.com.br/og?title=Porque+alguém+tem+que+rir+das+contas&category=Finanças+com+Humor"],
   },
   robots: {
     index: true,

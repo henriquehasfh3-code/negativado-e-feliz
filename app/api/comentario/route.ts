@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         htmlContent: `
           <h2>Novo comentário no blog</h2>
           <p><strong>Artigo:</strong> ${postTitle}</p>
-          <p><strong>Link:</strong> https://negativadoefeliz.com.br/blog/${postSlug}</p>
+          <p><strong>Link:</strong> https://www.negativadoefeliz.com.br/blog/${postSlug}</p>
           <hr/>
           <p><strong>Nome:</strong> ${escape(nome)}</p>
           <p><strong>E-mail:</strong> ${email ? escape(email) : "não informado"}</p>

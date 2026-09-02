@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       // Área de moderação: conteúdo retido, privado, nunca deve ser indexado
       disallow: ["/admin", "/admin/"],
     },
-    sitemap: "https://negativadoefeliz.com.br/sitemap.xml",
+    sitemap: "https://www.negativadoefeliz.com.br/sitemap.xml",
   };
 }

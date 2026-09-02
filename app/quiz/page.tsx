@@ -266,7 +266,7 @@ export default function QuizPage() {
 
   const handleShare = () => {
     const winner = getWinner();
-    const shareText = `Fiz o Quiz do Negativado e Feliz e descobri que sou um ${perfis[winner].title}! Descubra qual negativado você é: https://negativadoefeliz.com.br/quiz`;
+    const shareText = `Fiz o Quiz do Negativado e Feliz e descobri que sou um ${perfis[winner].title}! Descubra qual negativado você é: https://www.negativadoefeliz.com.br/quiz`;
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
   };
 
