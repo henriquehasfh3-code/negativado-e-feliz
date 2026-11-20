@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Declaração de Acessibilidade",
   description:
     "Conheça os recursos de acessibilidade do blog Negativado e Feliz e saiba como reportar dificuldades de navegação.",
+  alternates: { canonical: "/declaracao-de-acessibilidade" },
 };
 
 export default function DeclaracaoLayout({ children }: { children: React.ReactNode }) {

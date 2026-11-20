@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Negativado e Feliz | Porque alguém tem que rir das contas",
   description:
     "Aprenda a lidar com dívidas, score baixo e boletos atrasados com muito humor negro e dicas reais de sobrevivência financeira.",
+  alternates: { canonical: "/" },
 };
 
 export default async function HomePage() {

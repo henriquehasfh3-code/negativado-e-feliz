@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Contato",
   description:
     "Manda sua história, seu boleto mais assustador ou só desabafa. A redação do Negativado e Feliz está aqui pra ouvir.",
+  alternates: { canonical: "/contato" },
 };
 
 export default function ContatoLayout({ children }: { children: React.ReactNode }) {

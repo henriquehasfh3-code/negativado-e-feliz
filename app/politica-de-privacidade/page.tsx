@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Política de Privacidade",
   description:
     "Política de privacidade do blog Negativado e Feliz. Transparência sobre o uso de dados e cookies para fins de monetização com Google AdSense.",
+  alternates: { canonical: "/politica-de-privacidade" },
 };
 
 export default function PrivacyPolicyPage() {

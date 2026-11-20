@@ -19,6 +19,7 @@ export async function generateMetadata({
   return {
     title: thread.title,
     description: thread.body.slice(0, 160),
+    alternates: { canonical: `/forum/${slug}` },
   };
 }
 

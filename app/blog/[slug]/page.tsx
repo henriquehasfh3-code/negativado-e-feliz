@@ -53,6 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       // Google mostra no resultado de busca.
       title: post.title,
       description: post.description,
+      alternates: { canonical: `${siteUrl}/blog/${slug}` },
       openGraph: {
         title: post.title,
         description: post.description,

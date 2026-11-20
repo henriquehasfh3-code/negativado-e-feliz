@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Fórum",
   description:
     "O fórum do Negativado e Feliz: desabafo, dúvida e relato sobre dívida, score e sobrevivência financeira. Sem julgamento.",
+  alternates: { canonical: "/forum" },
 };
 
 function tempo(iso: string): string {
