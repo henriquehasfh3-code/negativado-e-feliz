@@ -86,6 +86,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Verificação de propriedade do site pra rede de afiliados Admitad
+  verification: {
+    other: {
+      "mitgo-verification": "56b054ea-91aa-47fd-bcd0-44588c672480",
+    },
+  },
 };
 
 export default function RootLayout({
