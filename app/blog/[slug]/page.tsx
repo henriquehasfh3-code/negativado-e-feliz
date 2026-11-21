@@ -13,6 +13,8 @@ import TableOfContents from "@/components/TableOfContents";
 import BookmarkButton from "@/components/BookmarkButton";
 import CommentForm from "@/components/CommentForm";
 import ForumCta from "@/components/forum/ForumCta";
+import AffiliateCta from "@/components/AffiliateCta";
+import { getAffiliateOffer } from "@/lib/affiliates";
 
 // ISR: revalida a cada 60 segundos
 export const revalidate = 60;
@@ -127,6 +129,7 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   const relatedPosts = await getRelatedPosts(slug, post.category, 3);
+  const affiliateOffer = getAffiliateOffer(slug);
 
   // Tratamento de Imagem de Capa ausente (se for string vazia, usa default)
   const coverUrl = post.coverUrl || "/hero-bg.png";
@@ -268,6 +271,8 @@ export default async function ArticlePage({ params }: Props) {
           <div className="prose max-w-none">
             <MDXRemote source={processedContent} components={mdxComponents} />
           </div>
+
+          {affiliateOffer && <AffiliateCta offer={affiliateOffer} />}
 
           {/* Convite ao fórum: liga o artigo à discussão do mesmo assunto */}
           <ForumCta articleSlug={slug} category={post.category} />
