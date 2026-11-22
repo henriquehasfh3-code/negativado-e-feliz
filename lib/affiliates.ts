@@ -22,10 +22,6 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     url: "https://lmdee.link/ZFPCpgaVRcMS",
     phrase: "O plano de 12 meses fica mais leve com juro de quem tem garantia",
   },
-  "de-devedor-a-superavitario": {
-    url: "https://lmdee.link/ZFPCpgaVRcMS",
-    phrase: "Virar o jogo também é trocar juro caro por um de garantia",
-  },
   "paguei-30-mil-de-divida-ganhando-2500": {
     url: "https://lmdee.link/ZFPCpgaVRcMS",
     phrase: "Trinta mil fica mais leve com um juro de quem tem garantia",
@@ -81,10 +77,6 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   "feirao-limpa-nome-vale-a-pena": {
     url: "https://lmdee.link/ZFPCpgaVRcMS",
     phrase: "Antes do feirão, vale comparar com o juro de quem tem garantia",
-  },
-  "como-sair-das-dividas-surtado": {
-    url: "https://lmdee.link/ZFPCpgaVRcMS",
-    phrase: "Um respiro possível: trocar o juro caro por um de garantia",
   },
   "score-zero-sobrevivencia": {
     url: "https://lmdee.link/ZFPCpgaVRcMS",
